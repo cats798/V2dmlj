@@ -9,8 +9,8 @@
 // @grant        GM_notification
 // @connect      *
 // @require      https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js
-// @updateURL    https://raw.githubusercontent.com/cats798/danmu-auto-link/main/danmu_auto.js
-// @downloadURL  https://raw.githubusercontent.com/cats798/danmu-auto-link/main/danmu_auto.js
+// @updateURL    https://raw.githubusercontent.com/cats798/V2dmlj/main/danmu_auto.js
+// @downloadURL  https://raw.githubusercontent.com/cats798/V2dmlj/main/danmu_auto.js
 // ==/UserScript==
 
 (function() {
