@@ -20,9 +20,7 @@
 
 ### 安装步骤
 1. 点击下方链接安装：
-   [安装自动链接弹幕v2](https://raw.githubusercontent.com/cats798/V2dmlj/main/danmu_auto.js)
-
-如有问题请提交 [Issue](https://github.com/cats798/V2dmlj/issues)
+   [安装自动链接弹幕v2](https://raw.githubusercontent.com/cats798/V2dmlj/main/dmlj.js)
 
 2. 在用户脚本管理器中确认安装
 
@@ -53,7 +51,7 @@
 
 ## 技术支持
 
-如有问题请提交 [Issue](https://github.com/cats798/danmu-auto-link/issues)
+如有问题请提交 [Issue](https://github.com/cats798/V2dmlj/issues)
 
 ## 许可证
 
