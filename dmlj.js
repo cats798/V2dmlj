@@ -9,8 +9,8 @@
 // @grant        GM_notification
 // @connect      *
 // @require      https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js
-// @updateURL    https://raw.githubusercontent.com/cats798/V2dmlj/main/danmu_auto.js
-// @downloadURL  https://raw.githubusercontent.com/cats798/V2dmlj/main/danmu_auto.js
+// @updateURL    https://raw.githubusercontent.com/cats798/V2dmlj/main/dmlj.js
+// @downloadURL  https://raw.githubusercontent.com/cats798/V2dmlj/main/dmlj.js
 // ==/UserScript==
 
 (function() {
@@ -111,126 +111,4 @@
             
             // 关闭按钮事件
             container.querySelector('.danmu-close').addEventListener('click', () => {
-                container.style.display = 'none';
-            });
-        }
-        
-        // 设置事件监听
-        setupEventListeners() {
-            // 监听视频元素变化
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    mutation.addedNodes.forEach((node) => {
-                        if (node.nodeType === 1) {
-                            this.checkForVideoElements(node);
-                        }
-                    });
-                });
-            });
-            
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
-        }
-        
-        // 检测视频元素
-        checkForVideoElements(element) {
-            const videos = element.querySelectorAll ? element.querySelectorAll('video') : [];
-            if (element.tagName === 'VIDEO') {
-                this.handleVideoElement(element);
-            }
-            videos.forEach(video => this.handleVideoElement(video));
-        }
-        
-        // 处理视频元素
-        handleVideoElement(video) {
-            if (video.dataset.danmuProcessed) return;
-            video.dataset.danmuProcessed = 'true';
-            
-            console.log('检测到视频元素，开始获取弹幕');
-            this.fetchDanmu(video.src);
-        }
-        
-        // 开始视频检测
-        startVideoDetection() {
-            // 检测现有视频元素
-            const existingVideos = document.querySelectorAll('video');
-            existingVideos.forEach(video => this.handleVideoElement(video));
-        }
-        
-        // 获取弹幕数据
-        async fetchDanmu(videoUrl) {
-            try {
-                const response = await this.gmRequest({
-                    method: 'GET',
-                    url: `${config.apiEndpoint}?url=${encodeURIComponent(videoUrl)}`,
-                    responseType: 'json'
-                });
-                
-                if (response && response.danmu) {
-                    this.displayDanmu(response.danmu);
-                }
-            } catch (error) {
-                console.error('获取弹幕失败:', error);
-            }
-        }
-        
-        // GM_xmlhttpRequest 封装
-        gmRequest(options) {
-            return new Promise((resolve, reject) => {
-                GM_xmlhttpRequest({
-                    ...options,
-                    onload: function(response) {
-                        if (response.status === 200) {
-                            try {
-                                const data = options.responseType === 'json' ? 
-                                    JSON.parse(response.responseText) : response.responseText;
-                                resolve(data);
-                            } catch (e) {
-                                resolve(response.responseText);
-                            }
-                        } else {
-                            reject(new Error(`HTTP ${response.status}: ${response.statusText}`));
-                        }
-                    },
-                    onerror: reject,
-                    ontimeout: reject
-                });
-            });
-        }
-        
-        // 显示弹幕
-        displayDanmu(danmuList) {
-            const content = document.querySelector('.danmu-content');
-            if (!content) return;
-            
-            danmuList.forEach(danmu => {
-                const item = document.createElement('div');
-                item.className = 'danmu-item';
-                item.textContent = danmu.text;
-                content.appendChild(item);
-            });
-            
-            // 限制显示数量
-            const items = content.querySelectorAll('.danmu-item');
-            if (items.length > 50) {
-                for (let i = 0; i < items.length - 50; i++) {
-                    content.removeChild(items[i]);
-                }
-            }
-            
-            // 自动滚动到底部
-            content.scrollTop = content.scrollHeight;
-        }
-    }
-    
-    // 等待DOM加载完成后初始化
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            new DanmuAutoLink();
-        });
-    } else {
-        new DanmuAutoLink();
-    }
-})();
+                container
