@@ -1,0 +1,2 @@
+// 重定向到JS文件
+window.location.href = 'https://raw.githubusercontent.com/cats798/V2dmlj/main/dmlj.js';
