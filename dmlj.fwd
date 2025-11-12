@@ -1,2 +1,32 @@
-// 重定向到JS文件
-window.location.href = 'https://raw.githubusercontent.com/cats798/V2dmlj/main/dmlj.js';
+// 自动链接弹幕v2 - 重定向文件
+// 这个.fwd文件将重定向到真实的主脚本 dmlj.js
+
+(function() {
+    'use strict';
+    
+    const mainScriptUrl = 'https://raw.githubusercontent.com/cats798/V2dmlj/main/dmlj.js';
+    
+    console.log('自动链接弹幕v2 - 从.fwd重定向到dmlj.js');
+    
+    // 动态加载主脚本
+    if (typeof GM_xmlhttpRequest !== 'undefined') {
+        // Tampermonkey/Greasemonkey 环境
+        GM_xmlhttpRequest({
+            method: 'GET',
+            url: mainScriptUrl,
+            onload: function(response) {
+                eval(response.responseText);
+            }
+        });
+    } else {
+        // 普通浏览器环境
+        fetch(mainScriptUrl)
+            .then(response => response.text())
+            .then(script => {
+                eval(script);
+            })
+            .catch(error => {
+                console.error('加载主脚本失败:', error);
+            });
+    }
+})();
